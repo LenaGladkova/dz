@@ -43,29 +43,41 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 $(document).ready(function(){
+    var totalPrice = 0; 
+
     $("h3").click(function(){
-        var zakaz = $("#koshik").html();
-        $("#koshik").html(zakaz + "<li>Книги✔️</li>");
+        var price = 700; 
+        totalPrice += price; 
+        $("#koshik").append("<li>Книги✔️</li>");
+        $("#totalPrice").text("Общая сумма: " + totalPrice + " грн");
     });
 
     $("h4").click(function(){
-        var zakaz = $("#koshik").html();
-        $("#koshik").html(zakaz + "<li>Маховик времени✔️</li>");
+        var price = 200;
+        totalPrice += price;
+        $("#koshik").append("<li>Маховик✔️</li>");
+        $("#totalPrice").text("Общая сумма: " + totalPrice + " грн");
     });
 
     $("h5").click(function(){
-        var zakaz = $("#koshik").html();
-        $("#koshik").html(zakaz + "<li>Мантия✔️</li>");
+        var price = 1500;
+        totalPrice += price;
+        $("#koshik").append("<li>Мантия✔️</li>");
+        $("#totalPrice").text("Общая сумма: " + totalPrice + " грн");
     });
 
     $("h6").click(function(){
-        var zakaz = $("#koshik").html();
-        $("#koshik").html(zakaz + "<li>Карты✔️</li>");
+        var price = 150;
+        totalPrice += price;
+        $("#koshik").append("<li>Карты✔️</li>");
+        $("#totalPrice").text("Общая сумма: " + totalPrice + " грн");
     });
 
     $("h1").click(function(){
-        var zakaz = $("#koshik").html();
-        $("#koshik").html(zakaz + "<li>Фигурки✔️</li>");
+        var price = 600;
+        totalPrice += price;
+        $("#koshik").append("<li>Фигурки✔️</li>");
+        $("#totalPrice").text("Общая сумма: " + totalPrice + " грн");
     });
 });
 </script>
@@ -74,21 +86,24 @@ $(document).ready(function(){
     <h2 id="h">Магазин⚡</h2>
     <div id="towary">
         <div class="towar1"> 
-          <img src="knigi.jpg" alt=""><h2>Книги</h2><h3>В корзину</h3> 
+          <img src="knigi.jpg" alt=""><h2>Книги 700грн</h2><h3>В корзину</h3> 
         </div>
         <div class="towar2"> 
-            <img src="maxovik.jpg" alt=""><h2>Маховик времени</h2><h4>В корзину</h4> 
+            <img src="maxovik.jpg" alt=""><h2>Маховик 200грн</h2><h4>В корзину</h4> 
         </div>
         <div class="towar3"> 
-            <img src="mantia.jpg" alt=""><h2>Мантия</h2><h5>В корзину</h5> 
+            <img src="mantia.jpg" alt=""><h2>Мантия 1500грн</h2><h5>В корзину</h5> 
         </div> 
         <div class="towar4"> 
-            <img src="karty.jpg" alt=""><h2>Карты</h2><h6>В корзину</h6> 
+            <img src="karty.jpg" alt=""><h2>Карты 150грн</h2><h6>В корзину</h6> 
         </div>
         <div class="towar5"> 
-            <img src="fig.jpg" alt=""><h2>Фигурки</h2><h1>В корзину</h1> 
+            <img src="fig.jpg" alt=""><h2>Фигурки 600грн</h2><h1>В корзину</h1> 
         </div>
-        🛒:<div id="koshik"></div>
+        🛒: <div id="totalPrice"></div>
+        <ul id="koshik"></ul>
+       
     </div>
 </body>
 </html>
+
