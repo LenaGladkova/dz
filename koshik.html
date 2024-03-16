@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>jQuery</title>
+<style>
+    body{
+        background-color: aliceblue;
+    }
+    #koshik {
+        margin-top: 20px; 
+        font-size: 30px;
+    }
+    #totalPrice {
+        font-size: 20px;
+    }
+  
+</style>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function(){
+    var cartItems = localStorage.getItem("cartItems") ? localStorage.getItem("cartItems").split(",") : [];
+    updateCart();
+
+    $("h3, h4, h5, h6, h1").click(function(){
+        var item = $(this).siblings("h2").text().trim(); 
+        cartItems.push(item);
+        updateCart();
+    });
+
+    $("body").on("click", ".remove-item", function(){
+        var itemIndex = $(this).data("index");
+        cartItems.splice(itemIndex, 1);
+        updateCart();
+    });
+
+    function updateCart() {
+        $("#koshik").empty();
+        cartItems.forEach(function(item, index) {
+            $("#koshik").append("<li>" + item + " <span class='remove-item' data-index='" + index + "'>❌</span></li>");
+        });
+        $("#totalPrice").text("В корзине " + cartItems.length + " товаров");
+        localStorage.setItem("cartItems", cartItems.join(","));
+    }
+});
+</script>
+</head>
+<body>
+    <h3>Корзина🛒<i></h3>
+    <ul id="koshik"></ul>
+    <div id="totalPrice"></div>
+</body>
+</html>
