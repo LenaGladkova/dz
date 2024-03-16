@@ -2,7 +2,6 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>jQuery</title>
 <style>
     body{
@@ -35,49 +34,45 @@
     font-size: 45px;
     margin: 10px;
   }
-  #koshik {
+  #korzina {
     margin-top: 20px; 
-    font-size: 30px;
+    font-size: 20px;
+    background-color: #f2f2f2;
+    border: 2px solid #ccc; 
+    border-radius: 5px; 
+    box-shadow: 0px 0px 5px 2px #ccc; 
+    padding: 10px;
   }
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 $(document).ready(function(){
-    var totalPrice = 0; 
 
-    $("h3").click(function(){
-        var price = 700; 
-        totalPrice += price; 
-        $("#koshik").append("<li>Книги✔️</li>");
-        $("#totalPrice").text("Общая сумма: " + totalPrice + " грн");
-    });
+    var cartItems = localStorage.getItem("cartItems") ? localStorage.getItem("cartItems").split(",") : [];
 
-    $("h4").click(function(){
-        var price = 200;
-        totalPrice += price;
-        $("#koshik").append("<li>Маховик✔️</li>");
-        $("#totalPrice").text("Общая сумма: " + totalPrice + " грн");
-    });
 
-    $("h5").click(function(){
-        var price = 1500;
-        totalPrice += price;
-        $("#koshik").append("<li>Мантия✔️</li>");
-        $("#totalPrice").text("Общая сумма: " + totalPrice + " грн");
-    });
+    function addItemToCart(item) {
+        cartItems.push(item);
+ 
+        localStorage.setItem("cartItems", cartItems.join(","));
+    }
 
-    $("h6").click(function(){
-        var price = 150;
-        totalPrice += price;
-        $("#koshik").append("<li>Карты✔️</li>");
-        $("#totalPrice").text("Общая сумма: " + totalPrice + " грн");
-    });
+    function updateCart() {
+        $("#koshik").empty();
+     
+        cartItems.forEach(function(item) {
+            $("#koshik").append("<li>" + item + " ✔️</li>");
+        });
+    }
 
-    $("h1").click(function(){
-        var price = 600;
-        totalPrice += price;
-        $("#koshik").append("<li>Фигурки✔️</li>");
-        $("#totalPrice").text("Общая сумма: " + totalPrice + " грн");
+   
+    $("h3, h4, h5, h6, h1").click(function(){
+       
+        var item = $(this).siblings("h2").text().trim(); 
+
+        addItemToCart(item);
+
+        updateCart();
     });
 });
 </script>
@@ -100,10 +95,13 @@ $(document).ready(function(){
         <div class="towar5"> 
             <img src="fig.jpg" alt=""><h2>Фигурки 600грн</h2><h1>В корзину</h1> 
         </div>
-        🛒: <div id="totalPrice"></div>
-        <ul id="koshik"></ul>
-       
     </div>
+    
+        <a href="koshik.html">🛒</a>
+   
+
+
 </body>
 </html>
+
 
